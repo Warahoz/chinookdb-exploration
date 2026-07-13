@@ -91,6 +91,6 @@ WHERE reports_to IS NULL;
 
 - [SQLite WHERE clause — sqlitetutorial.net](https://www.sqlitetutorial.net/sqlite-where/)
 - [SQLite BETWEEN — sqlitetutorial.net](https://www.sqlitetutorial.net/sqlite-between/)
-- [SQLite IN — sqlitetutorial.net](https://www.sqlitetutorial.net/sqlite-in/)
+- [SQLite IN — sqlitetutorial.net](https://www.sqlitetutorial.net/sqlite-in/)-68\
 - [SQLite LIKE — sqlitetutorial.net](https://www.sqlitetutorial.net/sqlite-like/)
 - [SQLite IS NULL — sqlitetutorial.net](https://www.sqlitetutorial.net/sqlite-is-null/)

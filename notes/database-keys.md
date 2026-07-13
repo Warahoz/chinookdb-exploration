@@ -28,32 +28,16 @@ Like a primary key, it enforces uniqueness on a column — but a table can have 
 ### Surrogate key
 An artificial, system-generated identifier (often an auto-incrementing integer) with no business meaning of its own — created purely to serve as a stable primary key. Most Chinook IDs (`track_id`, `album_id`, etc.) are surrogate keys.
 
-## Keys identified in the Chinook database
-
-| Table | Primary key | Notable foreign key(s) |
-|---|---|---|
-| `artists` | `artist_id` | — |
-| `albums` | `album_id` | `artist_id` → `artists.artist_id` |
-| `tracks` | `track_id` | `album_id` → `albums.album_id`, `genre_id` → `genres.genre_id`, `media_type_id` → `media_types.media_type_id` |
-| `genres` | `genre_id` | — |
-| `media_types` | `media_type_id` | — |
-| `playlists` | `playlist_id` | — |
-| `playlist_track` | composite key: (`playlist_id`, `track_id`) | `playlist_id` → `playlists.playlist_id`, `track_id` → `tracks.track_id` |
-| `customers` | `customer_id` | `support_rep_id` → `employees.employee_id` |
-| `employees` | `employee_id` | `reports_to` → `employees.employee_id` (self-referencing FK) |
-| `invoices` | `invoice_id` | `customer_id` → `customers.customer_id` |
-| `invoice_items` | `invoice_line_id` | `invoice_id` → `invoices.invoice_id`, `track_id` → `tracks.track_id` |
-
 Highlights worth noting from exploring the schema:
 
 - **`playlist_track` is the clearest composite key example** — neither `playlist_id` nor `track_id` alone is unique in that table (a playlist has many tracks, and a track can be on many playlists), but the *pair* is unique. This resolves the many-to-many relationship between `playlists` and `tracks`.
+
 - **`employees.reports_to` is a self-referencing foreign key** — it points back to `employee_id` in the same table, modeling the manager/employee hierarchy.
 - Every ID column in Chinook (`*_id`) is a **surrogate key** — an auto-generated integer with no real-world meaning, rather than a "natural key" like an email address or an SSN.
 
 ## Example: querying via a foreign key relationship
 
 ```sql
--- Every album with its artist's name (albums.artist_id -> artists.artist_id)
 SELECT al.title AS album, ar.name AS artist
 FROM albums al
 JOIN artists ar ON ar.artist_id = al.artist_id

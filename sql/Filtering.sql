@@ -1,12 +1,7 @@
--- ============================================
--- Filtering demo queries — Chinook DB
--- Concepts: WHERE, AND/OR, BETWEEN, IN, LIKE, IS NULL
--- ============================================
-
--- 1. Simple comparison: tracks longer than 5 minutes
-SELECT name, milliseconds
+-- 1. tracks longer than 5 minutes
+SELECT Name, Milliseconds
 FROM tracks
-WHERE milliseconds > 300000;
+WHERE Milliseconds > 300000;
 
 -- 2. AND: rock tracks that are also long
 SELECT t.name, g.name AS genre, t.milliseconds
@@ -34,7 +29,7 @@ SELECT name
 FROM artists
 WHERE name LIKE 'Iron%';
 
--- 7. IS NULL: employees with no manager (top of hierarchy)
+-- 7. IS NULL: employees with no manager 
 SELECT employee_id, first_name, last_name
 FROM employees
 WHERE reports_to IS NULL;

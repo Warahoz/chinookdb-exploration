@@ -1,8 +1,3 @@
--- ============================================
--- Grouping demo queries — Chinook DB
--- Concepts: GROUP BY, aggregate functions, HAVING
--- ============================================
-
 -- 1. Number of tracks per genre
 SELECT g.name AS genre, COUNT(t.track_id) AS track_count
 FROM tracks t
